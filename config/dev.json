@@ -12,5 +12,6 @@
         "cloud_name": "",
         "api_key": "",
         "api_secret": ""
-    }
+    },
+    "allowedOrigin": "http://localhost:3001"
 }
