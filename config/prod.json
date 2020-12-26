@@ -7,7 +7,7 @@
         "password": "upTheIron",
         "dbName": "prod-rally"
     },
-    "environement": "prod",
+    "environement": "prodLocal",
     "cloudinary": {
         "cloud_name": "",
         "api_key": "",

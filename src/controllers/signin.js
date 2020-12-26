@@ -31,6 +31,8 @@ async function signIn(req, res) {
 
   ////// Validation payload //////
 
+  console.log('BODY : ', req.body)
+
   const { error } = schemaPayload.validate(req.body,
     { abortEarly: false });
 
@@ -65,7 +67,8 @@ async function signIn(req, res) {
         answer.firstname = user.firstname;
         answer.name = user.name;
         answer.avatar = user.avatar;
-        favorites = user.favorite.map(fav => fav.car_id)
+        // favorites = user.favorite.map(fav => fav.car_id)
+        answer.favorites = user.favorite
       } else {
         errorArray.push('wrong password')
       }
@@ -78,7 +81,7 @@ async function signIn(req, res) {
     result,
     data: answer,
     error: errorArray,
-    favorites
+    // favorites
   })
 }
 
