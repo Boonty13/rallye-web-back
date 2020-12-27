@@ -26,7 +26,9 @@ function createSocketServer(server) {
         // Listen if user is changing chat room
         socket.on('changeRoom', function (roomsInfo) {
 
-            // socket.leave(roomsInfo.oldRoom)
+            socket.leave('Officiel')
+            socket.leave('Public')
+
             socket.join(roomsInfo.newRoom)
             myRoom = roomsInfo.newRoom
             console.log('JE SUIS DANS ROOM : ', myRoom)
