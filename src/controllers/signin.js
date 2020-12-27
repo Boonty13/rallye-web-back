@@ -66,6 +66,7 @@ async function signIn(req, res) {
         answer.status = user.status;
         answer.firstname = user.firstname;
         answer.name = user.name;
+        answer.email = user.email;
         answer.avatar = user.avatar;
         // favorites = user.favorite.map(fav => fav.car_id)
         answer.favorites = user.favorite
