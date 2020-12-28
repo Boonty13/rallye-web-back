@@ -9,9 +9,9 @@
     },
     "environement": "prodLocal",
     "cloudinary": {
-        "cloud_name": "",
-        "api_key": "",
-        "api_secret": ""
+        "cloud_name": "dhov1sjr7",
+        "api_key": "157842163261796",
+        "api_secret": "MX3FORXNb-9duMrGfsI3RdJvvyg"
     },
     "allowedOrigin": "http://localhost:3001"
 }
