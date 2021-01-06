@@ -4,3 +4,4 @@ config/dev.json
 config/prod.json
 config/test.json
 config/default.json
+coverage
