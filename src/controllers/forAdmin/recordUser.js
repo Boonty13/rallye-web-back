@@ -1,16 +1,12 @@
-const uid2 = require('uid2');
-const SHA256 = require("crypto-js/sha256");
-var encBase64 = require("crypto-js/enc-base64");
+const uid2 = require('uid2')
+const SHA256 = require("crypto-js/sha256")
+var encBase64 = require("crypto-js/enc-base64")
 
-
-const UserModel = require('../../db/models/user');
+const UserModel = require('../../db/models/user')
 
 async function signUp(req, res) {
 
-    const salt = uid2(32);
-    let userSaved;
-
-    let recorded = false;
+    const salt = uid2(32)
 
     const newUser = new UserModel({
         firstname: req.body.firstname,
@@ -25,16 +21,10 @@ async function signUp(req, res) {
         nationality: req.body.nationality,
 
     })
-    userSaved = await newUser.save();
 
+    let userSaved = await newUser.save()
 
-
-
-
-    res.json({
-        recorded: recorded,
-        data: userSaved,
-    })
+    res.json({ data: userSaved })
 }
 
-module.exports = signUp;
+module.exports = signUp

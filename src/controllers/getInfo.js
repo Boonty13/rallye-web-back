@@ -7,43 +7,29 @@ const getIdWithToken = require('../tools/getIdWithToken');
 
 async function getInfo(req, res) {
 
-    console.log('QUERY', req.query);
+  const idUser = await getIdWithToken(req.query.token);
+  const today = new Date;
 
-    const idUser = await getIdWithToken(req.query.token);
-    const today = new Date;
+  //// Getting the accomodation of the day for the user connected (with is token) /////
+  const accomodation = await AccomodationModel
+    .aggregate()
+    .match({ users: mongoose.Types.ObjectId(idUser) })
 
-    console.log('ID_USER', idUser);
+    .addFields({ "month": { $month: '$date' }, "day": { $dayOfMonth: '$date' }, "year": { $year: '$date' } })
+    .match({ day: today.getDate() }, { month: (today.getMonth() + 1) }, { year: today.getFullYear() })
 
-    //// Getting the accomodation of the day for the user connected (with is token) /////
-    const accomodation = await AccomodationModel
-        .aggregate()
-        .match({ users: mongoose.Types.ObjectId(idUser) })
+    .exec()
 
-        // .lookup({
-        //     'from': 'users',
-        //     'localField': 'users',
-        //     'foreignField': '_id',
-        //     'as': 'usersData'
-        // })
-        .addFields({ "month": { $month: '$date' }, "day": { $dayOfMonth: '$date' }, "year": { $year: '$date' } })
-        .match({ day: today.getDate() }, { month: (today.getMonth() + 1) }, { year: today.getFullYear() })
+  //// Getting the catering of the day  /////
+  const catering = await CateringModel
+    .aggregate()
 
-        // .match({ userData: { firstname: 'Romain' } })
-        .exec()
+    .addFields({ "month": { $month: '$date' }, "day": { $dayOfMonth: '$date' }, "year": { $year: '$date' } })
+    .match({ day: today.getDate() }, { month: (today.getMonth() + 1) }, { year: today.getFullYear() })
 
+    .exec()
 
-    //// Getting the catering of the day  /////
-    const catering = await CateringModel
-        .aggregate()
-
-        .addFields({ "month": { $month: '$date' }, "day": { $dayOfMonth: '$date' }, "year": { $year: '$date' } })
-        .match({ day: today.getDate() }, { month: (today.getMonth() + 1) }, { year: today.getFullYear() })
-
-        // .match({ userData: { firstname: 'Romain' } })
-        .exec()
-
-
-    res.json({ accomodation, catering })
+  res.json({ accomodation, catering })
 }
 
 module.exports = getInfo;

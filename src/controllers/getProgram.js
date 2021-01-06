@@ -1,9 +1,9 @@
-const ProgramModel = require('../db/models/program');
+const ProgramModel = require('../db/models/program')
 
 async function getProgram(req, res) {
-    const programDb = await ProgramModel.find()
-    console.log('Le Programme', programDb);
-    res.json({ program: programDb })
+  const programDb = await ProgramModel.find()
+
+  res.json({ program: programDb })
 }
 
-module.exports = getProgram;
+module.exports = getProgram

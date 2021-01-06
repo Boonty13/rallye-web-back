@@ -1,4 +1,4 @@
-const ResultModel = require('../../db/models/result');
+const ResultModel = require('../../db/models/result')
 
 async function recordResults(req, res) {
 
@@ -9,14 +9,11 @@ async function recordResults(req, res) {
         gpe_position: req.body.gpe_position,
         time: req.body.time,
         diff: req.body.diff,
-    });
-
-    const resultSaved = await newResult.save();
-
-    res.json({
-        recorded: true,
-        data: resultSaved,
     })
+
+    const resultSaved = await newResult.save()
+
+    res.json({ data: resultSaved })
 }
 
-module.exports = recordResults;
+module.exports = recordResults

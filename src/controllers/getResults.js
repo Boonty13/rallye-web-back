@@ -1,29 +1,27 @@
 
-const ResultModel = require('../db/models/result');
+const ResultModel = require('../db/models/result')
 
 async function getResults(req, res) {
 
-    const results = await ResultModel.find({ stage: 'ES1' })
-        // .populate('team_id')
-        .populate({
-            path: 'team_id',
-            populate: {
-                path: 'pilot_1',
+  const results = await ResultModel.find({ stage: 'ES1' })
+    .populate({
+      path: 'team_id',
+      populate: {
+        path: 'pilot_1',
 
-            },
-        })
-        .populate({
-            path: 'team_id',
-            populate: {
-                path: 'pilot_2'
-            }
-        })
+      },
+    })
+    .populate({
+      path: 'team_id',
+      populate: {
+        path: 'pilot_2'
+      }
+    })
 
-        .sort({ position: 1 })
-        .exec();
-    console.log(results);
+    .sort({ position: 1 })
+    .exec();
 
-    res.json({ results: results })
+  res.json({ results })
 }
 
-module.exports = getResults;
+module.exports = getResults

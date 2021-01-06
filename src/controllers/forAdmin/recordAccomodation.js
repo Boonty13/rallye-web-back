@@ -1,4 +1,4 @@
-const AccomodationModel = require('../../db/models/accomodation');
+const AccomodationModel = require('../../db/models/accomodation')
 
 async function recordAccomodation(req, res) {
 
@@ -9,15 +9,11 @@ async function recordAccomodation(req, res) {
         shuttle_point: req.body.shuttle_point,
         shuttle_hours: req.body.shuttle_hours,
         users: req.body.users
-    });
-
-    const accomodationSaved = await newAccomodation.save();
-
-    res.json({
-        recorded: true,
-        data: accomodationSaved,
-
     })
+
+    const accomodationSaved = await newAccomodation.save()
+
+    res.json({ data: accomodationSaved })
 }
 
-module.exports = recordAccomodation;
+module.exports = recordAccomodation

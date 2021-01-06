@@ -1,5 +1,4 @@
-const CarModel = require('../../db/models/car');
-
+const CarModel = require('../../db/models/car')
 
 async function recordCar(req, res) {
 
@@ -9,15 +8,11 @@ async function recordCar(req, res) {
         year: req.body.year,
         image: req.body.image,
         description: req.body.description
-    });
+    })
 
     const carSaved = await newCar.save();
 
-    res.json({
-        recorded: true,
-        data: carSaved,
-
-    })
+    res.json({ data: carSaved })
 }
 
-module.exports = recordCar;
+module.exports = recordCar

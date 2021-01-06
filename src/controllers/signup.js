@@ -1,9 +1,9 @@
-const uid2 = require('uid2');
-const SHA256 = require("crypto-js/sha256");
-var encBase64 = require("crypto-js/enc-base64");
-const Joi = require('joi');
+const uid2 = require('uid2')
+const SHA256 = require("crypto-js/sha256")
+var encBase64 = require("crypto-js/enc-base64")
+const Joi = require('joi')
 
-const UserModel = require('../db/models/user');
+const UserModel = require('../db/models/user')
 
 const schemaPayload = Joi.object({
   firstname: Joi.string(),
@@ -74,12 +74,7 @@ async function signUp(req, res) {
     }
   }
 
-
-  res.json({
-    recorded: recorded,
-    data: userSaved,
-    error: errorArray
-  })
+  res.json({ recorded, data: userSaved, error: errorArray })
 }
 
-module.exports = signUp;
+module.exports = signUp

@@ -1,7 +1,7 @@
-const UserModel = require('../db/models/user');
-const SHA256 = require("crypto-js/sha256");
-const encBase64 = require("crypto-js/enc-base64");
-const Joi = require('joi');
+const UserModel = require('../db/models/user')
+const SHA256 = require("crypto-js/sha256")
+const encBase64 = require("crypto-js/enc-base64")
+const Joi = require('joi')
 
 const schemaPayload = Joi.object({
 
@@ -15,7 +15,6 @@ const schemaPayload = Joi.object({
     .required()
 })
 
-
 async function signIn(req, res) {
 
   let result = false;
@@ -27,11 +26,7 @@ async function signIn(req, res) {
     status: null
   }
 
-  let favorites = [];
-
   ////// Validation payload //////
-
-  console.log('BODY : ', req.body)
 
   const { error } = schemaPayload.validate(req.body,
     { abortEarly: false });
@@ -69,7 +64,6 @@ async function signIn(req, res) {
         answer.email = user.email;
         answer.avatar = user.avatar;
         answer.nationality = user.nationality;
-        // favorites = user.favorite.map(fav => fav.car_id)
         answer.favorites = user.favorite
       } else {
         errorArray.push('wrong password')
@@ -79,12 +73,8 @@ async function signIn(req, res) {
       errorArray.push("inexisting email")
     }
   }
-  res.json({
-    result,
-    data: answer,
-    error: errorArray,
-    // favorites
-  })
+  
+  res.json({ result, data: answer, error: errorArray })
 }
 
-module.exports = signIn;
+module.exports = signIn

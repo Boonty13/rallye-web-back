@@ -1,4 +1,4 @@
-const NewsModel = require('../../db/models/news');
+const NewsModel = require('../../db/models/news')
 
 async function recordNews(req, res) {
 
@@ -7,15 +7,11 @@ async function recordNews(req, res) {
         image: req.body.image,
         description: req.body.description,
         dat: req.body.date,
-    });
-
-    const newsSaved = await newNews.save();
-
-    res.json({
-        recorded: true,
-        data: newsSaved,
-
     })
+
+    const newsSaved = await newNews.save()
+
+    res.json({ data: newsSaved })
 }
 
-module.exports = recordNews;
+module.exports = recordNews

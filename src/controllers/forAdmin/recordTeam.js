@@ -1,5 +1,4 @@
-const TeamModel = require('../../db/models/team');
-
+const TeamModel = require('../../db/models/team')
 
 async function recordTeam(req, res) {
 
@@ -10,15 +9,11 @@ async function recordTeam(req, res) {
         car: req.body.car,
         category: req.body.category,
         grid: req.body.grid
-    });
-
-    const teamSaved = await newTeam.save();
-
-    res.json({
-        recorded: true,
-        data: teamSaved,
-
     })
+
+    const teamSaved = await newTeam.save()
+
+    res.json({ data: teamSaved })
 }
 
-module.exports = recordTeam;
+module.exports = recordTeam
