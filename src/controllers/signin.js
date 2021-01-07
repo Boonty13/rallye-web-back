@@ -52,7 +52,6 @@ async function signIn(req, res) {
     if (user) {
       var hash = SHA256(req.body.password + user.salt).toString(encBase64);
 
-
       ///// Testing password /////
 
       if (hash === user.password) {
@@ -73,7 +72,6 @@ async function signIn(req, res) {
       errorArray.push("inexisting email")
     }
   }
-  
   res.json({ result, data: answer, error: errorArray })
 }
 
